@@ -1,99 +1,83 @@
-# 📘 Adaptive Filter Algorithm
-
-## 📌 Overview
-本文件說明一種自適應濾波演算法，其核心為透過誤差修正來更新權重向量。
+# 📘 Adaptive Filter Formula
 
 ---
 
-## 🧠 Initialization（初始化）
+## 📌 Initialization
 
-> 初始權重設定為零向量：
+> 初始設定：
 
 $$
 \hat{h}(0) = zeros(p)
 $$
 
-- `p`：濾波器階數（filter order）
+---
+
+## 🔄 Computation
+
+對於：
+
+- $n = 0$
+- $n = 1$
+- $n = 2$
+- ...
 
 ---
 
-## 🔄 Computation（計算流程）
-
-對於每個時間步：
-
-$$
-n = 0, 1, 2, ...
-$$
-
----
-
-### 1️⃣ 輸入向量建構
+### 1️⃣ Input Vector
 
 $$
 x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T
 $$
 
-- 為一個向量
-- 包含目前與過去的輸入資料
+- 向量形式
+- 包含歷史資料
 
 ---
 
-### 2️⃣ 誤差計算
+### 2️⃣ Error Function
 
 $$
 e(n) = d(n) - \hat{h}^H(n)x(n)
 $$
 
-- `d(n)`：期望輸出
-- `\hat{h}^H(n)`：共軛轉置
+> 誤差為期望值與估計值的差
 
 ---
 
-### 3️⃣ 權重更新
+### 3️⃣ Update Rule
 
 $$
 \hat{h}(n+1) = \hat{h}(n) + \frac{\mu e^*(n)x(n)}{x^H(n)x(n)}
 $$
 
-- `\mu`：學習率（learning rate）
-- `e^*(n)`：誤差共軛
-
 ---
 
-## 📊 特性分析
+## 📊 Summary Table
 
-| 項目 | 說明 |
+| 項目 | 公式 |
 |------|------|
-| 收斂速度 | 快 |
-| 穩定性 | 與 μ 有關 |
-| 應用 | 訊號處理 |
+| 初始化 | $\hat{h}(0) = zeros(p)$ |
+| 輸入向量 | $x(n)$ |
+| 誤差 | $e(n)$ |
+| 更新 | $\hat{h}(n+1)$ |
 
 ---
 
-## ⚙️ 參數說明
+## 💡 Notes
 
-- **μ**：學習率  
-- **p**：濾波器階數  
-- **x(n)**：輸入訊號  
-- **d(n)**：期望訊號  
-
----
-
-## 🧾 使用情境
-
-- 噪音消除（Noise Cancellation）
-- 回聲消除（Echo Cancellation）
-- 通道估測（Channel Estimation）
+- 使用 **共軛轉置（Hermitian）**
+- 使用 *誤差修正*
+- 使用 `learning rate (μ)`
 
 ---
 
-## 💻 範例（Pseudo Code）
+## 🧾 Code Block（公式集合）
 
-```python
-h = zeros(p)
+```text
+ĥ(0) = zeros(p)
 
-for n in range(N):
-    x_vec = [x[n], x[n-1], ..., x[n-p+1]]
-    y = dot(conj(h), x_vec)
-    e = d[n] - y
-    h = h + (mu * conj(e) * x_vec) / dot(conj(x_vec), x_vec)
+x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T
+
+e(n) = d(n) - ĥ^H(n)x(n)
+
+ĥ(n+1) = ĥ(n) + (μ e*(n)x(n)) / (x^H(n)x(n))
