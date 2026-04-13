@@ -1,4 +1,64 @@
-# 📘 Adaptive Filter Formula
+# Adaptive Filter
+
+---
+
+## Initialization
+
+> 
+$$
+\hat{h}(0) = zeros(p)
+$$
+
+---
+
+## Computation
+
+- For $n = 0, 1, 2, ...$
+
+---
+
+### x(n)
+
+$$
+x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T
+$$
+
+---
+
+### e(n)
+
+$$
+e(n) = d(n) - \hat{h}^H(n)x(n)
+$$
+
+---
+
+### Update
+
+$$
+\hat{h}(n+1) = \hat{h}(n) + \frac{\mu e^*(n)x(n)}{x^H(n)x(n)}
+$$
+
+---
+
+## Table
+
+| Step | Expression |
+|------|----------|
+| Init | $\hat{h}(0)$ |
+| Input | $x(n)$ |
+| Error | $e(n)$ |
+| Update | $\hat{h}(n+1)$ |
+
+---
+
+## Code
+
+```text
+ĥ(0) = zeros(p)
+x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T
+e(n) = d(n) - ĥ^H(n)x(n)
+ĥ(n+1) = ĥ(n) + (μ e*(n)x(n)) / (x^H(n)x(n))# 📘 Adaptive Filter Formula
 
 ---
 
