@@ -2,10 +2,7 @@
 
 ---
 
-> 
-$$
-\hat{h}(0) = zeros(p)
-$$
+> $$\hat{h}(0) = zeros(p)$$
 
 ---
 
@@ -13,27 +10,20 @@ $$
 
 ---
 
-$$
-x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T
-$$
+$$x(n) = [x(n), x(n-1), ..., x(n-p+1)]^T$$
 
 ---
 
-$$
-e(n) = d(n) - \hat{h}^H(n)x(n)
-$$
+$$e(n) = d(n) - \hat{h}^H(n)x(n)$$
 
 ---
 
-$$
-\hat{h}(n+1) = \hat{h}(n) + \frac{\mu e^*(n)x(n)}{x^H(n)x(n)}
-$$
+$$\hat{h}(n+1) = \hat{h}(n) + \frac{\mu e^*(n)x(n)}{x^H(n)x(n)}$$
 
 ---
 
-| | |
-|--|--|
 | $\hat{h}(0)$ | $zeros(p)$ |
+|--------------|-----------|
 | $x(n)$ | $[x(n), x(n-1), ..., x(n-p+1)]^T$ |
 | $e(n)$ | $d(n) - \hat{h}^H(n)x(n)$ |
 | $\hat{h}(n+1)$ | $\hat{h}(n) + \frac{\mu e^*(n)x(n)}{x^H(n)x(n)}$ |
